@@ -1,14 +1,14 @@
 @extends('layouts.layouts')
 
 {{-- admin.blade.phpの@yield('title')に'ニュースの新規作成'を埋め込む --}}
-@section('title', '有給時間申請')
+@section('title', '有給申請承認画面')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>有給時間申請</h2>
-                <form action="{{ action('WorkerController@create2') }}" method="post" enctype="multipart/form-data">
+                <h2>有給申請承認画面</h2>
+                <form action="{{ action('Admin\AdminController@create2') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)

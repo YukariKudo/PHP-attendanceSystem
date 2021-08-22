@@ -55,7 +55,7 @@ class WorkerController extends Controller
       return redirect('worker/create3');
     }
     public function index(Request $request)
-  {
+    {
       return view('worker.index');
-  }
+    }
 }

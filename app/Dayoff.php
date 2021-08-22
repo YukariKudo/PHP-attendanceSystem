@@ -11,5 +11,6 @@ class Dayoff extends Model
     public static $rules = array(
        'start' => 'required',
         'end' => 'required',
+        'memo' => 'required',
     );
 }

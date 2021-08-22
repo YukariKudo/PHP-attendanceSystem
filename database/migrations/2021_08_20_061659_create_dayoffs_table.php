@@ -17,6 +17,7 @@ class CreateDayoffsTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('start'); 
             $table->dateTime('end'); 
+            $table->string('memo');
             $table->timestamps();
         });
     }
