@@ -17,7 +17,10 @@ class CreateDayoffsTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('start'); 
             $table->dateTime('end'); 
+            $table->string('user_id');
+            $table->string('type');
             $table->string('memo');
+            $table->integer('is_checked')->default(0);
             $table->timestamps();
         });
     }

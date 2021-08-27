@@ -11,6 +11,13 @@ class Dayoff extends Model
     public static $rules = array(
        'start' => 'required',
         'end' => 'required',
+        'type'=> 'required',
         'memo' => 'required',
     );
+    
+    public function user()
+    {
+      return $this->belongsTo('App\User');
+    }
 }
+

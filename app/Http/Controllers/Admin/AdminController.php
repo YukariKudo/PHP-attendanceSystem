@@ -4,33 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Dayoff;
 
 class AdminController extends Controller
 {
     public function apply(){
-      return view ('admin.create');
+      return view ('admin.create',['dayoffs'=>Dayoff::all()]);
     }
     public function create()
     {
       return redirect('admin/create');
     }
-    public function apply2(){
-      return view ('admin.create2');
-    }
-    public function create2()
+    public function index(Request $request)
     {
-      return redirect('admin/create2');
+     return view('admin.index', ['users'=>User::all(),'hoge'=>'aaa']);
     }
-    public function apply3(){
-      return view ('admin.create3');
-    }
-    public function create3()
+    public function update(Request $request)
     {
-      return redirect('admin/create3');
+      // Validationをかける
+      $this->validate($request, Dayoff::$rules);
+      // News Modelからデータを取得する
+      $dayoff = Dayoff::find($request->id);
+      // 送信されてきたフォームデータを格納する
+      $dayoff_form = $request->all();
+      // 該当するデータを上書きして保存する
+      $dayoff->fill($dayoff_form)->save();
+
+      return redirect('admin/create');
     }
-    public function index()
-    {
-      return view('admin.index');
-    }
-    
 }

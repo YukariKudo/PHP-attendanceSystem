@@ -12,6 +12,8 @@
         {{-- 各ページごとにtitleタグを入れるために@yieldで空けておきます。 --}}
         <title>@yield('title')</title>
         <!-- Scripts -->
+        <!-- Bootstrap CSS -->
+       
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
 

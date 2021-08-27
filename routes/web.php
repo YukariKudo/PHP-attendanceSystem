@@ -14,20 +14,32 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('worker/create','WorkerController@apply');
-Route::post('worker/create','WorkerController@create')->middleware('auth');
-Route::get('worker','WorkerController@index')->middleware('auth');
-Route::get('worker/create2','WorkerController@apply2');
-Route::post('worker/create2','WorkerController@create2')->middleware('auth');
 Route::get('worker/create3','WorkerController@apply3');
 Route::post('worker/create3','WorkerController@create3')->middleware('auth');
+Route::get('worker/','WorkerController@index');
 Route::get('admin/create','Admin\AdminController@apply');
 Route::post('admin/create','Admin\AdminController@create')->middleware('auth');
-Route::get('admin/create2','Admin\AdminController@apply2');
-Route::post('admin/create2','Admin\AdminController@create2')->middleware('auth');
-Route::get('admin/create3','Admin\AdminController@apply3');
-Route::post('admin/create3','Admin\AdminController@create3')->middleware('auth');
-Route::get('admin','Admin\AdminController@index')->middleware('auth');
+Route::post('admin/update', 'Admin\AdminController@update')->middleware('auth'); 
+
+
+
+
+Auth::routes();
+
+Route::group(['middleware' => ['auth.admin']], function () {
+	//管理側トップ
+Route::get('admin','Admin\AdminController@index');
+	//ユーザー一覧
+Route::get('/admin/user_list', 'Admin\ManageUserController@showUserList');
+	//ユーザー詳細
+Route::get('/admin/user/{id}', 'Admin\ManageUserController@showUserDetail');
+});
+
+//管理側ログイン
+Route::get('/admin/login', 'Admin\AdminLoginController@showLoginform');
+Route::post('/admin/login', 'Admin\AdminLoginController@login');
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

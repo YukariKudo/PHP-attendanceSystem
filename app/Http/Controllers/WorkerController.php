@@ -3,42 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Worker;
-use App\Holiday;
+use Auth;
 use App\Dayoff;
 
 class WorkerController extends Controller
 {
-    public function apply(){
-      return view ('worker.create');
-    }
-    public function create(Request $request)
-    {
-      $this->validate($request, Worker::$rules);
-      
-      $worker = new Worker;
-      $form = $request->all();
-      
-      $worker->fill($form);
-      $worker->save();
-      
-      return redirect('worker/create');
-    }
-    public function apply2(){
-      return view ('worker.create2');
-    }
-    public function create2(Request $request)
-    {
-      $this->validate($request, Holiday::$rules);
-      
-      $holiday = new Worker;
-      $form = $request->all();
-      
-      $holiday->fill($form);
-      $holiday->save();
-      
-      return redirect('worker/create2');
-    }
     public function apply3(){
       return view ('worker.create3');
     }
@@ -50,6 +19,7 @@ class WorkerController extends Controller
       $form = $request->all();
       
       $dayoff->fill($form);
+      $dayoff->user_id = Auth::id();
       $dayoff->save();
       
       return redirect('worker/create3');

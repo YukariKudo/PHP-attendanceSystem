@@ -10,19 +10,23 @@
                 <h2>在宅勤怠時間承認画面</h2>
                 <form action="{{ action('Admin\AdminController@create') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
-                        <ul>
-                            @foreach($errors->all() as $e)
-                                <li>{{ $e }}</li>
-                            @endforeach
-                        </ul>
+                    <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                    </ul>
                     @endif
-                    <label for="meeting-time">始業時間</label>
-                        <input type="datetime-local" id="meeting-time" name="start" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00">
-                    
-                    <label for="meeting-time">終業時間</label>
-                        <input type="datetime-local" id="meeting-time" name="end" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00">
+                  <body>
+                    @foreach($dayoffs as $dayoff)
+                      <tr>
+                        <a>内容：{{$dayoff->type}}</a><br>
+                        <a>開始時間：{{$dayoff->start}}</a><br>
+                        <a>終了時間：{{$dayoff->end}}</a><br>
+                      </tr>
+                    <input type="submit" class="btn btn-primary" href="{{ action('Admin\AdminController@update', ['id' => $dayoff->id]) }}" value="承認" ><br>
+                    @endforeach
+                  </body>
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="申請">
                 </form>
             </div>
         </div>
