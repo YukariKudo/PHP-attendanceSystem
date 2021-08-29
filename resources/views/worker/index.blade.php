@@ -8,6 +8,14 @@
     {{ Auth::user()->user_id }}
     {{ Auth::user()->name }}
     
+    @foreach(Auth::user()->dayoffs as $dayoff)
+    @if($dayoff->is_checked == 1)
+    承認済み
+    @else
+    未承認
+    @endif
+    @endforeach
+    
     <div class="col-4">
     <a class="btn btn-primary" href="{{'worker/create3'}}" role="button">勤怠管理申請</a>
     </div>

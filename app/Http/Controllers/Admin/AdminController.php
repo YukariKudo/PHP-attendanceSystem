@@ -22,14 +22,13 @@ class AdminController extends Controller
     }
     public function update(Request $request)
     {
-      // Validationをかける
-      $this->validate($request, Dayoff::$rules);
       // News Modelからデータを取得する
       $dayoff = Dayoff::find($request->id);
       // 送信されてきたフォームデータを格納する
-      $dayoff_form = $request->all();
+      $dayoff->is_checked = 1;
+      //dd($dayoff);
       // 該当するデータを上書きして保存する
-      $dayoff->fill($dayoff_form)->save();
+      $dayoff->save();
 
       return redirect('admin/create');
     }
