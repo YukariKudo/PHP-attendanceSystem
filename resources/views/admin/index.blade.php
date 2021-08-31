@@ -20,7 +20,7 @@
         <td>{{$user->name}}</td>
       </tr>
       <div class="col-4">
-    <a class="btn btn-primary" href="{{ 'admin/create' }}" role="button">申請内容確認</a>
+    <a class="btn btn-primary" href="{{ action('Admin\AdminController@apply') }}" role="button">申請内容確認</a>
     </div>
     @endforeach
   </tbody>

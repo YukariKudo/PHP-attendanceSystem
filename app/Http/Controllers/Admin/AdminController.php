@@ -10,6 +10,7 @@ use App\Dayoff;
 class AdminController extends Controller
 {
     public function apply(){
+      //dd('ok');
       return view ('admin.create',['dayoffs'=>Dayoff::all()]);
     }
     public function create()
@@ -18,11 +19,13 @@ class AdminController extends Controller
     }
     public function index(Request $request)
     {
+     //dd(User::all());
      return view('admin.index', ['users'=>User::all(),'hoge'=>'aaa']);
     }
     public function update(Request $request)
     {
       // News Modelからデータを取得する
+      //dd($request->id);
       $dayoff = Dayoff::find($request->id);
       // 送信されてきたフォームデータを格納する
       $dayoff->is_checked = 1;
